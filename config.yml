@@ -3,7 +3,8 @@ backend:
   repo: emonsaqibh/Repapers-2.0
   branch: main
 
-media_folder: "Repapers/public/images/uploads"
+# Paths are now relative to your project's Base Directory ('Repapers')
+media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -12,7 +13,7 @@ collections:
     files:
       - label: "Categories"
         name: "categories"
-        file: "Repapers/public/categories.json"
+        file: "public/categories.json" # Corrected path
         fields:
           - label: "Category List"
             name: "categories"
@@ -23,7 +24,7 @@ collections:
 
       - label: "Wallpapers"
         name: "wallpapers"
-        file: "Repapers/public/wallpapers.json"
+        file: "public/wallpapers.json" # Corrected path
         widget: "list"
         fields:
           - {name: id, label: ID, widget: string}
@@ -37,7 +38,8 @@ collections:
           - name: category
             label: Category
             widget: relation
-            collection: "categories" # This still works, but we need to target the nested data
+            collection: "content" # Target the parent collection
+            file: "categories"   # Target the 'categories' file within that collection
             searchFields: ["categories.*.name"]
             valueField: "categories.*.id"
             displayFields: ["categories.*.name"]
