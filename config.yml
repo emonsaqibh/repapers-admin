@@ -1,4 +1,3 @@
-# The backend is now 'github' which is the correct method for this setup
 backend:
   name: github
   repo: emonsaqibh/Repapers-2.0
@@ -8,22 +7,22 @@ media_folder: "Repapers/public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "categories"
-    label: "Categories"
+  - name: "content"
+    label: "Content Management"
     files:
-      - label: "All Categories"
-        name: "all_categories"
+      - label: "Categories"
+        name: "categories"
         file: "Repapers/public/categories.json"
-        widget: "list"
         fields:
-          - {name: id, label: ID, widget: string, hint: "A unique ID, e.g., sci-fi"}
-          - {name: name, label: Name, widget: string, hint: "The display name, e.g., Sci-Fi"}
+          - label: "Category List"
+            name: "categories"
+            widget: "list"
+            fields:
+              - {name: id, label: ID, widget: string, hint: "A unique ID, e.g., sci-fi"}
+              - {name: name, label: Name, widget: string, hint: "The display name, e.g., Sci-Fi"}
 
-  - name: "wallpapers"
-    label: "Wallpapers"
-    files:
       - label: "Wallpapers"
-        name: "all_wallpapers"
+        name: "wallpapers"
         file: "Repapers/public/wallpapers.json"
         widget: "list"
         fields:
@@ -38,10 +37,10 @@ collections:
           - name: category
             label: Category
             widget: relation
-            collection: "categories"
-            searchFields: ["name"]
-            valueField: "id"
-            displayFields: ["name"]
+            collection: "categories" # This still works, but we need to target the nested data
+            searchFields: ["categories.*.name"]
+            valueField: "categories.*.id"
+            displayFields: ["categories.*.name"]
           - {name: tags, label: Tags, widget: list}
           - name: download_options
             label: Download Options
