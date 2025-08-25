@@ -1,20 +1,32 @@
-# This backend section is different because it points to your original repo
 backend:
   name: git-gateway
-  repo: emonsaqibh/Repapers-2.0 # Your ORIGINAL content repository
+  repo: emonsaqibh/Repapers-2.0
   branch: main
 
-# These paths are relative to your ORIGINAL content repository
 media_folder: "Repapers/public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # This is the new collection for managing categories
+  - name: "categories"
+    label: "Categories"
+    folder: "Repapers/public/categories" # This is a placeholder, as we're editing a single file
+    create: false # We edit a single file, not create new ones
+    files:
+      - label: "All Categories"
+        name: "all_categories"
+        file: "Repapers/public/categories.json"
+        widget: "list"
+        fields:
+          - {name: id, label: ID, widget: string, hint: "A unique ID, e.g., sci-fi"}
+          - {name: name, label: Name, widget: string, hint: "The display name, e.g., Sci-Fi"}
+
+  # This is your existing Wallpapers collection, now with an updated category field
   - name: "wallpapers"
     label: "Wallpapers"
     files:
       - label: "Wallpapers"
         name: "all_wallpapers"
-        # This path is relative to your ORIGINAL content repository
         file: "Repapers/public/wallpapers.json"
         widget: "list"
         fields:
@@ -26,7 +38,16 @@ collections:
             fields:
               - {name: name, label: "Author Name", widget: string}
               - {name: title, label: "Author Title", widget: string}
-          - {name: category, label: Category, widget: string}
+          
+          # This field is now a dropdown populated from your Categories collection
+          - name: category
+            label: Category
+            widget: relation
+            collection: "categories"
+            searchFields: ["name"]
+            valueField: "id"
+            displayFields: ["name"]
+
           - {name: tags, label: Tags, widget: list}
           - name: download_options
             label: Download Options
