@@ -3,8 +3,8 @@ backend:
   repo: emonsaqibh/Repapers-2.0
   branch: main
 
-# Corrected paths to point inside the 'Repapers' project folder
-media_folder: "Repapers/public/images/uploads"
+# Corrected paths to point to the root 'public' folder
+media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -13,7 +13,7 @@ collections:
     files:
       - label: "Categories"
         name: "categories"
-        file: "Repapers-2.0/public/categories.json" # Corrected path
+        file: "public/categories.json" # Corrected path
         fields:
           - label: "Category List"
             name: "categories"
@@ -24,7 +24,7 @@ collections:
 
       - label: "Wallpapers"
         name: "wallpapers"
-        file: "Repapers/public/wallpapers.json" # Corrected path
+        file: "public/wallpapers.json" # Corrected path
         widget: "list"
         fields:
           - {name: id, label: ID, widget: string}
