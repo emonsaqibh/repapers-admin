@@ -7,11 +7,10 @@ media_folder: "Repapers/public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # This is the new collection for managing categories
+  # This is the corrected Categories collection
   - name: "categories"
     label: "Categories"
-    folder: "Repapers/public/categories" # This is a placeholder, as we're editing a single file
-    create: false # We edit a single file, not create new ones
+    # The conflicting 'folder' and 'create' properties have been removed
     files:
       - label: "All Categories"
         name: "all_categories"
@@ -21,7 +20,7 @@ collections:
           - {name: id, label: ID, widget: string, hint: "A unique ID, e.g., sci-fi"}
           - {name: name, label: Name, widget: string, hint: "The display name, e.g., Sci-Fi"}
 
-  # This is your existing Wallpapers collection, now with an updated category field
+  # The Wallpapers collection remains the same
   - name: "wallpapers"
     label: "Wallpapers"
     files:
@@ -38,8 +37,6 @@ collections:
             fields:
               - {name: name, label: "Author Name", widget: string}
               - {name: title, label: "Author Title", widget: string}
-          
-          # This field is now a dropdown populated from your Categories collection
           - name: category
             label: Category
             widget: relation
@@ -47,11 +44,10 @@ collections:
             searchFields: ["name"]
             valueField: "id"
             displayFields: ["name"]
-
           - {name: tags, label: Tags, widget: list}
           - name: download_options
             label: Download Options
             widget: list
             fields:
               - {name: resolution, label: Resolution, widget: select, options: ["1080p", "2K", "4K", "8K", "Mobile"]}
-              - {name: path, label: "File (Upload Here)", widget: file}
+              - {name: path, label: "File (Upload Here)", widget: image}
