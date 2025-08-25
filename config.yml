@@ -1,5 +1,6 @@
+# The backend is now 'github' which is the correct method for this setup
 backend:
-  name: git-gateway
+  name: github
   repo: emonsaqibh/Repapers-2.0
   branch: main
 
@@ -7,10 +8,8 @@ media_folder: "Repapers/public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # This is the corrected Categories collection
   - name: "categories"
     label: "Categories"
-    # The conflicting 'folder' and 'create' properties have been removed
     files:
       - label: "All Categories"
         name: "all_categories"
@@ -20,7 +19,6 @@ collections:
           - {name: id, label: ID, widget: string, hint: "A unique ID, e.g., sci-fi"}
           - {name: name, label: Name, widget: string, hint: "The display name, e.g., Sci-Fi"}
 
-  # The Wallpapers collection remains the same
   - name: "wallpapers"
     label: "Wallpapers"
     files:
