@@ -17,6 +17,10 @@
     {
       "resolution": "2K",
       "path": "/images/uploads/beautiful-mountains-landscape.jpg"
+    },
+    {
+      "resolution": "Mobile",
+      "path": "/images/uploads/beautiful-mountains-landscape.jpg"
     }
   ]
 }
