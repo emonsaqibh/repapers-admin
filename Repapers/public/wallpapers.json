@@ -1,0 +1,18 @@
+{
+  "id": "character001",
+  "title": "Miles Morales",
+  "author": {
+    "name": "Reaper",
+    "title": "Admin"
+  },
+  "category": "Character",
+  "tags": [
+    "Character"
+  ],
+  "download_options": [
+    {
+      "resolution": "4K",
+      "path": "/images/uploads/wallpaperflare.com_wallpaper.jpg"
+    }
+  ]
+}
