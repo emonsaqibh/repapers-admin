@@ -21,7 +21,6 @@ collections:
               - {name: id, label: ID, widget: string}
               - {name: name, label: Name, widget: string}
 
-      # This is the corrected Wallpapers section
       - label: "Wallpapers"
         name: "wallpapers"
         file: "public/wallpapers.json"
@@ -38,6 +37,10 @@ collections:
                 fields:
                   - {name: name, label: "Author Name", widget: string}
                   - {name: title, label: "Author Title", widget: string}
+              
+              # --- THIS IS THE NEW THUMBNAIL FIELD ---
+              - {name: thumbnail, label: "Thumbnail Image (Low Resolution)", widget: image}
+
               - name: category
                 label: Category
                 widget: relation
@@ -48,7 +51,7 @@ collections:
                 displayFields: ["categories.*.name"]
               - {name: tags, label: Tags, widget: list}
               - name: download_options
-                label: Download Options
+                label: "Download Options (High Resolution)"
                 widget: list
                 fields:
                   - {name: resolution, label: Resolution, widget: select, options: ["1080p", "2K", "4K", "8K", "Mobile"]}
