@@ -20,6 +20,29 @@ collections:
             fields:
               - {name: id, label: ID, widget: string}
               - {name: name, label: Name, widget: string}
+      
+      # --- THIS IS THE NEW SECTION FOR WALLPAPER PACKS ---
+      - label: "Wallpaper Packs"
+        name: "packs"
+        file: "public/packs.json"
+        fields:
+          - label: "Pack List"
+            name: "packs"
+            widget: "list"
+            fields:
+              - {name: id, label: "Pack ID", widget: string, hint: "A unique ID, e.g., abstract-pack-1"}
+              - {name: title, label: "Pack Title", widget: string}
+              - {name: description, label: "Description", widget: "text"}
+              - {name: cover_image, label: "Cover Image", widget: image}
+              - name: wallpaper_ids
+                label: "Wallpapers in this Pack"
+                widget: relation
+                collection: "content" # The parent collection
+                file: "wallpapers"    # The file to get wallpapers from
+                multiple: true        # Allows selecting multiple wallpapers
+                searchFields: ["wallpapers.*.title"]
+                valueField: "wallpapers.*.id"
+                displayFields: ["wallpapers.*.title"]
 
       - label: "Wallpapers"
         name: "wallpapers"
@@ -31,16 +54,13 @@ collections:
             fields:
               - {name: id, label: ID, widget: string}
               - {name: title, label: Title, widget: string}
+              - {name: thumbnail, label: "Thumbnail Image (Low Resolution)", widget: image}
               - name: author
                 label: Author
                 widget: object
                 fields:
                   - {name: name, label: "Author Name", widget: string}
                   - {name: title, label: "Author Title", widget: string}
-              
-              # --- THIS IS THE NEW THUMBNAIL FIELD ---
-              - {name: thumbnail, label: "Thumbnail Image (Low Resolution)", widget: image}
-
               - name: category
                 label: Category
                 widget: relation
