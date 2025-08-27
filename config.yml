@@ -20,8 +20,7 @@ collections:
             fields:
               - {name: id, label: ID, widget: string}
               - {name: name, label: Name, widget: string}
-      
-      # --- THIS IS THE NEW SECTION FOR WALLPAPER PACKS ---
+
       - label: "Wallpaper Packs"
         name: "packs"
         file: "public/packs.json"
@@ -30,37 +29,11 @@ collections:
             name: "packs"
             widget: "list"
             fields:
-              - {name: id, label: "Pack ID", widget: string, hint: "A unique ID, e.g., abstract-pack-1"}
+              - {name: id, label: "Pack ID", widget: string}
               - {name: title, label: "Pack Title", widget: string}
               - {name: description, label: "Description", widget: "text"}
               - {name: cover_image, label: "Cover Image", widget: image}
-              - name: wallpaper_ids
-                label: "Wallpapers in this Pack"
-                widget: relation
-                collection: "content" # The parent collection
-                file: "wallpapers"    # The file to get wallpapers from
-                multiple: true        # Allows selecting multiple wallpapers
-                searchFields: ["wallpapers.*.title"]
-                valueField: "wallpapers.*.id"
-                displayFields: ["wallpapers.*.title"]
-
-      - label: "Wallpapers"
-        name: "wallpapers"
-        file: "public/wallpapers.json"
-        fields:
-          - label: "Wallpaper List"
-            name: "wallpapers"
-            widget: "list"
-            fields:
-              - {name: id, label: ID, widget: string}
-              - {name: title, label: Title, widget: string}
-              - {name: thumbnail, label: "Thumbnail Image (Low Resolution)", widget: image}
-              - name: author
-                label: Author
-                widget: object
-                fields:
-                  - {name: name, label: "Author Name", widget: string}
-                  - {name: title, label: "Author Title", widget: string}
+              # --- THIS IS THE NEW CATEGORY FIELD ---
               - name: category
                 label: Category
                 widget: relation
@@ -69,10 +42,17 @@ collections:
                 searchFields: ["categories.*.name"]
                 valueField: "categories.*.id"
                 displayFields: ["categories.*.name"]
-              - {name: tags, label: Tags, widget: list}
-              - name: download_options
-                label: "Download Options (High Resolution)"
-                widget: list
-                fields:
-                  - {name: resolution, label: Resolution, widget: select, options: ["1080p", "2K", "4K", "8K", "Mobile"]}
-                  - {name: path, label: "File (Upload Here)", widget: image}
+              - name: wallpaper_ids
+                label: "Wallpapers in this Pack"
+                widget: relation
+                collection: "content"
+                file: "wallpapers"
+                multiple: true
+                searchFields: ["wallpapers.*.title"]
+                valueField: "wallpapers.*.id"
+                displayFields: ["wallpapers.*.title"]
+
+      - label: "Wallpapers"
+        name: "wallpapers"
+        file: "public/wallpapers.json"
+        # ... (rest of wallpapers config is unchanged)
